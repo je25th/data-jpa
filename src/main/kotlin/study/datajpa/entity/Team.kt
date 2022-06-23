@@ -14,7 +14,7 @@ class Team(
     var name: String,
 
     @OneToMany(mappedBy = "team")
-    var member: MutableList<Member>? = mutableListOf()
+    var member: MutableList<Member> = mutableListOf()
 ) {
     override fun toString(): String {
         return "Team(id=$id, name='$name')"

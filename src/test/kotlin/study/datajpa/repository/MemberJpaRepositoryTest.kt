@@ -18,12 +18,12 @@ internal class MemberJpaRepositoryTest {
 
     @Test
     fun testMember() {
-        var member = Member(username = "memberA")
+        val member = Member(username = "memberA")
         val save = memberJpaRepository.save(member)
-        val find = memberJpaRepository.find(save.id)
+        val find = save.id?.let { memberJpaRepository.find(it) }
 
-        assertThat(find.id).isEqualTo(member.id)
-        assertThat(find.username).isEqualTo(member.username)
+        assertThat(find?.id).isEqualTo(member.id)
+        assertThat(find?.username).isEqualTo(member.username)
         assertThat(find).isEqualTo(member)
     }
 
