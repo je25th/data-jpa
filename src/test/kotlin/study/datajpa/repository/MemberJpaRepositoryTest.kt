@@ -54,4 +54,19 @@ internal class MemberJpaRepositoryTest {
         assertThat(memberJpaRepository.count()).isEqualTo(0)
     }
 
+    @Test
+    fun findByUsernameAndAgeGreaterThan() {
+        val m1 = Member(username = "AAA", age = 10)
+        val m2 = Member(username = "AAA", age = 20)
+        memberJpaRepository.save(m1)
+        memberJpaRepository.save(m2)
+
+        val result = memberJpaRepository.findByUsernameAndAgeGreaterThan("AAA", 15)
+
+        assertThat(result?.size).isEqualTo(1)
+        assertThat(result?.get(0)?.username).isEqualTo("AAA")
+        assertThat(result?.get(0)?.age).isEqualTo(20)
+
+    }
+
 }
