@@ -69,4 +69,15 @@ internal class MemberRepositoryTest {
 
     }
 
+    @Test
+    fun testNamedQuery() {
+        val m1 = Member(username = "AAA", age = 10)
+        val m2 = Member(username = "BBB", age = 20)
+        memberRepository.save(m1)
+        memberRepository.save(m2)
+
+        val result = memberRepository.findByUsername("AAA").get(0)
+        assertThat(result).isEqualTo(m1)
+    }
+
 }

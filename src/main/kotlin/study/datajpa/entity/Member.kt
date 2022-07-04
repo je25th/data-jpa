@@ -7,8 +7,13 @@ import javax.persistence.GeneratedValue
 import javax.persistence.Id
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
+import javax.persistence.NamedQuery
 
 @Entity
+@NamedQuery( //NamedQuery는 애플리케이션 로딩 시점에 파싱해서 오류 있는지 애플리케이션 로딩(run) 시점에 알 수 있음
+    name = "Member.findByUsername",
+    query = "select m from Member m where m.username = :username"
+)
 class Member(
     @Id @GeneratedValue
     @Column(name="member_id")

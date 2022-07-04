@@ -69,4 +69,15 @@ internal class MemberJpaRepositoryTest {
 
     }
 
+    @Test
+    fun findByUsername() {
+        val m1 = Member(username = "AAA", age = 10)
+        val m2 = Member(username = "BBB", age = 20)
+        memberJpaRepository.save(m1)
+        memberJpaRepository.save(m2)
+
+        val result = memberJpaRepository.findByUsername("AAA").get(0)
+        assertThat(result).isEqualTo(m1)
+    }
+
 }
